@@ -1,0 +1,150 @@
+.cta-section {
+  padding: 100px 40px;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.12),
+    rgba(6, 182, 212, 0.12)
+  );
+}
+
+.cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.cta-content > p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+}
+
+/* Simple Feature List */
+.cta-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cta-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+.feature-icon {
+  font-size: 18px;
+  color: #2563eb;
+  margin-top: 2px;
+}
+
+/* CTA Button */
+.cta-btn {
+  padding: 14px 40px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 80px 20px;
+  }
+
+  .cta-content h2 {
+    font-size: 28px;
+  }
+}
+.cta-section {
+  padding: 100px 40px;
+  background: linear-gradient(
+    135deg,
+    rgba(37, 99, 235, 0.12),
+    rgba(6, 182, 212, 0.12)
+  );
+}
+
+.cta-content {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.cta-content h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.cta-content > p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+}
+
+/* PURE BULLET LIST */
+.feature-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 42px;
+}
+
+.feature-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.bullet-icon {
+  font-size: 18px;
+  color: #2563eb;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.bullet-text {
+  max-width: 640px;
+}
+
+/* CTA Button */
+.cta-btn {
+  padding: 14px 40px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cta-section {
+    padding: 80px 20px;
+  }
+
+  .cta-content h2 {
+    font-size: 28px;
+  }
+}
