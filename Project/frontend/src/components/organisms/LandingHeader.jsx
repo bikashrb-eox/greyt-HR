@@ -1,103 +1,112 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { FiUser, FiLogOut } from "react-icons/fi";
 
-const LandingHeader = () => {
-  const [open, setOpen] = useState(false);
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  FiMenu,
+  FiX,
+  FiMoon,
+  FiSun,
+  FiUser
+} from "react-icons/fi";
+import "../styles/LandingHeader.css";
+import { useTheme } from "../../hooks/useTheme.jsx";
+
+const NAV_ITEMS = [
+  { label: "Features", href: "#features" },
+  { label: "Pricing", href: "#pricing" },
+  { label: "Contact", href: "#contact" }
+];
+
+const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Scroll shrink effect
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const handleNavClick = () => {
+    setMobileOpen(false); // close mobile menu after click
+  };
 
   return (
-    <motion.header
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      style={styles.header}
-    >
-      <div style={styles.logo}>greytHR</div>
+    <>
+      <header className={`navbar ${scrolled ? "shrink" : ""}`}>
+        <div className="logo">greytHR</div>
 
-      <nav style={styles.nav}>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
+        {/* Desktop Navigation */}
+        <nav className="nav-links">
+          {NAV_ITEMS.map(({ label, href }) => (
+            <a key={label} href={href} className="nav-item">
+              {label}
+              <span />
+            </a>
+          ))}
+        </nav>
 
-        <div style={{ position: "relative" }}>
+        {/* Right Actions */}
+        <div className="nav-actions">
           <button
-            onClick={() => setOpen(!open)}
-            style={styles.signInBtn}
+            className="icon-btn"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
           >
-            <FiUser /> Sign In
+            {theme === "dark" ? <FiSun /> : <FiMoon />}
           </button>
 
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25 }}
-              style={styles.dropdown}
-            >
-              <Link to="/login">Login</Link>
-              <button style={styles.logoutBtn}>
-                <FiLogOut /> Logout
-              </button>
-            </motion.div>
-          )}
+          <button className="login-btn">
+            <FiUser /> Login
+          </button>
+
+          <button
+            className="hamburger"
+            onClick={() => setMobileOpen(true)}
+          >
+            <FiMenu />
+          </button>
         </div>
-      </nav>
-    </motion.header>
+      </header>
+
+      {/* Mobile Drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.aside
+            className="mobile-menu"
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
+            <button
+              className="close-btn"
+              onClick={() => setMobileOpen(false)}
+            >
+              <FiX />
+            </button>
+
+            {NAV_ITEMS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                className="mobile-link"
+                onClick={handleNavClick}
+              >
+                {label}
+              </a>
+            ))}
+
+            <button className="mobile-login">
+              Login
+            </button>
+          </motion.aside>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
-const styles = {
-  header: {
-    position: "sticky",
-    top: 0,
-    zIndex: 100,
-    background: "#ffffff",
-    padding: "16px 40px",
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    boxShadow: "0 2px 10px rgba(0,0,0,0.05)"
-  },
-  logo: {
-    fontSize: "22px",
-    fontWeight: 700,
-    color: "#2563eb"
-  },
-  nav: {
-    display: "flex",
-    alignItems: "center",
-    gap: "24px"
-  },
-  signInBtn: {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    padding: "8px 16px",
-    borderRadius: "8px",
-    background: "#2563eb",
-    color: "#fff",
-    border: "none"
-  },
-  dropdown: {
-    position: "absolute",
-    right: 0,
-    top: "44px",
-    background: "#fff",
-    borderRadius: "8px",
-    boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-    padding: "12px",
-    display: "flex",
-    flexDirection: "column",
-    gap: "8px"
-  },
-  logoutBtn: {
-    background: "transparent",
-    border: "none",
-    display: "flex",
-    alignItems: "center",
-    gap: "6px"
-  }
-};
-
-export default LandingHeader;
+export default Navbar;

@@ -1,0 +1,62 @@
+.features-section {
+  padding: 100px 40px;
+  background: linear-gradient(180deg, #f9fafb, #f1f5f9);
+  perspective: 1200px;
+}
+
+.features-section h2 {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.features-grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 32px;
+}
+
+/* ---------- CARD ---------- */
+.feature-card {
+  background: #ffffff;
+  padding: 36px 28px;
+  border-radius: 18px;
+  text-align: center;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  box-shadow: 0 25px 60px rgba(37, 99, 235, 0.25);
+}
+
+/* ---------- ICON ---------- */
+.feature-icon {
+  font-size: 34px;
+  margin-bottom: 14px;
+  color: #2563eb;
+  display: inline-block;
+}
+
+/* ---------- TEXT ---------- */
+.feature-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.feature-desc {
+  font-size: 14px;
+  color: #475569;
+  overflow: hidden;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .features-section {
+    padding: 80px 20px;
+  }
+}
