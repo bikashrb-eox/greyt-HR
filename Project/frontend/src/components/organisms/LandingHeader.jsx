@@ -1,6 +1,6 @@
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import AuthModal from "../auth/AuthModal.jsx";
 import {
   FiMenu,
   FiX,
@@ -21,8 +21,9 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showAuth, setShowAuth] = useState(false);
 
-  // Scroll shrink effect
+  // Navbar scroll effect
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
@@ -30,7 +31,7 @@ const Navbar = () => {
   }, []);
 
   const handleNavClick = () => {
-    setMobileOpen(false); // close mobile menu after click
+    setMobileOpen(false);
   };
 
   return (
@@ -58,10 +59,15 @@ const Navbar = () => {
             {theme === "dark" ? <FiSun /> : <FiMoon />}
           </button>
 
-          <button className="login-btn">
+          {/* DESKTOP LOGIN */}
+          <button
+            className="login-btn"
+            onClick={() => setShowAuth(true)}
+          >
             <FiUser /> Login
           </button>
 
+          {/* MOBILE HAMBURGER */}
           <button
             className="hamburger"
             onClick={() => setMobileOpen(true)}
@@ -71,7 +77,7 @@ const Navbar = () => {
         </div>
       </header>
 
-      {/* Mobile Drawer */}
+      {/* MOBILE DRAWER */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.aside
@@ -99,10 +105,24 @@ const Navbar = () => {
               </a>
             ))}
 
-            <button className="mobile-login">
+            {/* MOBILE LOGIN */}
+            <button
+              className="mobile-login"
+              onClick={() => {
+                setMobileOpen(false);
+                setShowAuth(true);
+              }}
+            >
               Login
             </button>
           </motion.aside>
+        )}
+      </AnimatePresence>
+
+      {/* AUTH MODAL */}
+      <AnimatePresence>
+        {showAuth && (
+          <AuthModal onClose={() => setShowAuth(false)} />
         )}
       </AnimatePresence>
     </>
