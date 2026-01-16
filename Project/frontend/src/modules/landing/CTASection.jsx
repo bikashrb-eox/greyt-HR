@@ -7,7 +7,7 @@ import {
   FiShield
 } from "react-icons/fi";
 
-import "../landing/styles/CTASection.css";
+import "./styles/CTASection.css";
 
 const FEATURES = [
   {

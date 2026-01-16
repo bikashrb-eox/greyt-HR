@@ -10,6 +10,8 @@ export const AuthProvider = ({ children }) => {
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
+
   // Fetch user profile and roles
   const fetchUserProfile = async (userId) => {
     if (!userId) {
@@ -58,18 +60,22 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     // Get existing session on app load
     const initSession = async () => {
-      const {
-        data: { session },
-      } = await supabase.auth.getSession();
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
 
-      setSession(session);
-      setUser(session?.user ?? null);
-      
-      if (session?.user) {
-        await fetchUserProfile(session.user.id);
+        setSession(session);
+        setUser(session?.user ?? null);
+        
+        if (session?.user) {
+          await fetchUserProfile(session.user.id);
+        }
+      } catch (error) {
+        console.error("Error initializing session:", error);
+      } finally {
+        setLoading(false);
       }
-      
-      setLoading(false);
     };
 
     initSession();
@@ -79,6 +85,7 @@ export const AuthProvider = ({ children }) => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(
       async (_event, session) => {
+        console.log("Auth state changed:", _event, session?.user?.email);
         setSession(session);
         setUser(session?.user ?? null);
         
@@ -95,11 +102,18 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const signOut = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    setSession(null);
-    setProfile(null);
-    setRoles([]);
+    try {
+      console.log("Signing out...");
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error("Error signing out:", error);
+        return;
+      }
+      console.log("Signed out successfully");
+      // Removed manual state setting, let the listener handle it
+    } catch (error) {
+      console.error("Unexpected error during sign out:", error);
+    }
   };
 
   // Helper function to check if user has a specific role
@@ -126,7 +140,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };
