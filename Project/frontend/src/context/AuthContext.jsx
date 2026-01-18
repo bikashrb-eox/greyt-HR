@@ -103,16 +103,25 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     try {
-      console.log("Signing out...");
+      console.log("AuthContext: Signing out...");
       const { error } = await supabase.auth.signOut();
       if (error) {
-        console.error("Error signing out:", error);
-        return;
+        console.error("AuthContext: Error signing out:", error);
+        throw error;
       }
-      console.log("Signed out successfully");
-      // Removed manual state setting, let the listener handle it
+      console.log("AuthContext: Signed out successfully");
+      // Clear local state immediately in case listener doesn't fire
+      setSession(null);
+      setUser(null);
+      setProfile(null);
+      setRoles([]);
     } catch (error) {
-      console.error("Unexpected error during sign out:", error);
+      console.error("AuthContext: Unexpected error during sign out:", error);
+      // Still clear local state on error
+      setSession(null);
+      setUser(null);
+      setProfile(null);
+      setRoles([]);
     }
   };
 

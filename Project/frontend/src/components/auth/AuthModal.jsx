@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabaseClient";
 import styles from "./AuthModal.module.css";
 
 export default function AuthModal({ onClose }) {
+  const navigate = useNavigate();
   const [mode, setMode] = useState("login"); // login | signup
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +27,12 @@ export default function AuthModal({ onClose }) {
         if (error) throw error;
 
         setSuccess("Login successful");
+        // Redirect to home page after successful login
+        setTimeout(() => {
+          onClose();
+          navigate("/home");
+        }, 1200);
+        return;
       } else {
         const { data, error } = await supabase.auth.signUp({
           email,
@@ -51,6 +59,7 @@ export default function AuthModal({ onClose }) {
         }
       }
 
+      // For signup, just close the modal
       setTimeout(() => onClose(), 1200);
     } catch (err) {
       console.error("Auth error:", err);

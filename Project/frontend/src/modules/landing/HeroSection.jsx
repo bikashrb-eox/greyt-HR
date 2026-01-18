@@ -25,7 +25,7 @@ const AnimatedCounter = ({ target = 0, duration = 1500 }) => {
 
 export default function HeroSection() {
   return (
-    <section className="hero">
+    <section className="landing-hero">
       <div className="hero-inner">
         <motion.h1
           className="hero-title"
@@ -51,8 +51,12 @@ export default function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <Link to="/login" className="btn btn-primary">Get started</Link>
-          <a className="btn btn-ghost" href="#features">Learn more</a>
+          <Link to="/login" className="btn btn-primary"  style={{
+    background: "linear-gradient(90deg, #2563eb, #06b6d4)"
+  }}>Get started</Link>
+          <a className="btn btn-ghost" href="#features"  style={{
+    background: "linear-gradient(90deg, #2563eb, #06b6d4)"
+  }}>Learn more</a>
         </motion.div>
 
         <motion.div

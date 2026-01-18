@@ -5,6 +5,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 
 import LandingPage from "../modules/landing/LandingPage";
 import Login from "../modules/auth/Login";
+import Home from "../pages/Home";
 import EmployeeList from "../modules/employee/EmployeeList";
 import AdminUsers from "../modules/admin/AdminUsers";
 import ManagerDashboard from "../modules/manager/ManagerDashboard";
@@ -22,6 +23,7 @@ const AppRoutes = () => {
 
       {/* Protected Routes */}
       <Route element={<DashboardLayout />}>
+        <Route path="/home" element={<Home />} />
         <Route path="/employees" element={<EmployeeList />} />
         <Route path="/admin" element={<AdminUsers />} />
         <Route path="/manager" element={<ManagerDashboard />} />
