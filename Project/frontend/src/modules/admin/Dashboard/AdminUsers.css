@@ -1,0 +1,229 @@
+.admin-container {
+  margin-left:260px;
+  padding: 20px;
+  background: var(--bg-page);
+  min-height: 100vh;
+  animation: fadeIn 0.6s ease;
+  color: var(--text-primary);
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-header h1 {
+  color: var(--text-primary);
+}
+
+.admin-header p {
+  color: var(--text-secondary);
+}
+
+/* MODULE CARDS */
+.admin-module-card {
+  background: var(--bg-card);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+  border: 1px solid var(--border-color);
+}
+
+/* Gradient overlay layer */
+.admin-module-card::before {
+  content: "";
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    #2563eb,
+    #3b82f6,
+    #60a5fa
+  );
+  transition: all 0.4s ease;
+  z-index: -1;
+  border-radius: 12px;
+}
+
+/* On hover gradient comes from bottom */
+.admin-module-card:hover::before {
+  bottom: 0;
+}
+
+.admin-module-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Change text color on hover */
+.admin-module-card:hover h3,
+.admin-module-card:hover p {
+  color: white;
+}
+
+/* Icon color change */
+.admin-module-card:hover .module-icon {
+  color: white;
+}
+
+.module-icon {
+  font-size: 40px;
+  color: #2563eb;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.start-btn {
+  margin-top: auto;
+  padding: 8px 14px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: center;
+}
+
+.admin-module-card:hover .start-btn {
+  background: white;
+  color: #2563eb;
+}
+
+/* ROLE MANAGEMENT */
+
+.role-management-section {
+  margin-top: 40px;
+}
+
+.role-management-section h2 {
+  color: var(--text-primary);
+}
+
+.users-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.user-card {
+  background: var(--bg-card);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.user-card:hover {
+  transform: translateY(-3px);
+}
+
+.user-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.user-icon {
+  font-size: 28px;
+  color: #2563eb;
+}
+
+.user-header h3 {
+  color: var(--text-primary);
+}
+
+.role-section .current-role {
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.role-section .current-role span {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.role-select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  margin-top: 10px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.role-select option {
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.remove-role-actions {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.remove-role-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.remove-role-btn:hover {
+  background: #dc2626;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.admin-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Tablet View - 2 cards per row */
+@media (max-width: 1024px) {
+  .admin-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile View - 1 card per row */
+@media (max-width: 600px) {
+  .admin-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
