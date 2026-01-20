@@ -26,7 +26,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       {/* HOME */}
-      <Link to="/" className="menu-item">
+      <Link to="/home" className="menu-item">
         <div className="menu-left">
           <GIcon name="home" /> Home
         </div>
@@ -119,6 +119,13 @@ function Sidebar() {
           <GIcon name="people" /> People
         </div>
       </div>
+
+      {/* EMPLOYEE MANAGEMENT */}
+      <Link to="/employee-management" className="menu-item">
+        <div className="menu-left">
+          <GIcon name="badge" /> Employee Management
+        </div>
+      </Link>
 
       {/* HELPDESK */}
       <div className="menu-item">

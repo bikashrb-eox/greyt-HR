@@ -19,7 +19,7 @@ export default function usePermission() {
   const isAdmin = () => has("ADMIN");
 
   // Check if user is manager or admin
-  const isManager = () => hasAny(["ADMIN", "MANAGER"]);
+  const isManager = () => has("MANAGER");
 
   // Check if user is employee (or any role)
   const isEmployee = () => hasAny(["ADMIN", "MANAGER", "EMPLOYEE"]);
