@@ -12,6 +12,9 @@ import EmployeeManagement from "../pages/EmployeeManagement";
 import AdminUsers from "../modules/admin/Dashboard/AdminUsers";
 import ManagerDashboard from "../modules/manager/ManagerDashboard";
 import Engage from "../modules/engage/Engage.jsx";
+import Todo from "../modules/todo/Todo.jsx";
+import TaskSection from "../modules/todo/TaskSection.jsx";
+import ReviewSection from "../modules/todo/ReviewSection.jsx";
 
 const AppRoutes = () => {
   return (
@@ -31,7 +34,12 @@ const AppRoutes = () => {
         <Route path="/employee-management" element={<EmployeeManagement />} />
         <Route path="/admin" element={<AdminUsers />} />
         <Route path="/manager" element={<ManagerDashboard />} />
-        <Route path="/engage" element = {<Engage/>}/>
+        <Route path="/engage" element={<Engage />} />
+        <Route path="/todo" element={<Todo />}>
+          <Route index element={<TaskSection />} />
+          <Route path="tasks" element={<TaskSection />} />
+          <Route path="review" element={<ReviewSection />} />
+        </Route>
       </Route>
 
       {/* Fallback */}
