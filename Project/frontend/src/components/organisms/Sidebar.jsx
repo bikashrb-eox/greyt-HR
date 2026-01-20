@@ -165,6 +165,13 @@ function Sidebar() {
         </div>
       </div>
 
+      {/* EMPLOYEE MANAGEMENT */}
+      <Link to="/employee-management" className="menu-item">
+        <div className="menu-left">
+          <GIcon name="badge" /> Employee Management
+        </div>
+      </Link>
+
       {/* HELPDESK */}
       <div className={getMenuClass("helpdesk")} onClick={() => handleMenuClick("helpdesk")}>
         <div className="menu-left">
