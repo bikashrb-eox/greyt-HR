@@ -7,6 +7,8 @@ import LandingPage from "../modules/landing/LandingPage";
 import Login from "../modules/auth/Login";
 import Home from "../pages/Home";
 import EmployeeList from "../modules/employee/EmployeeList";
+import EmployeeManagement from "../pages/EmployeeManagement";
+// import AdminUsers from "../modules/admin/AdminUsers";
 import AdminUsers from "../modules/admin/Dashboard/AdminUsers";
 import ManagerDashboard from "../modules/manager/ManagerDashboard";
 import Engage from "../modules/engage/Engage.jsx";
@@ -26,6 +28,7 @@ const AppRoutes = () => {
       <Route element={<DashboardLayout />}>
         <Route path="/home" element={<Home />} />
         <Route path="/employees" element={<EmployeeList />} />
+        <Route path="/employee-management" element={<EmployeeManagement />} />
         <Route path="/admin" element={<AdminUsers />} />
         <Route path="/manager" element={<ManagerDashboard />} />
         <Route path="/engage" element = {<Engage/>}/>
