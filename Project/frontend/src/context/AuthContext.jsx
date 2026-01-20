@@ -50,6 +50,7 @@ export const AuthProvider = ({ children }) => {
         console.error("Error fetching roles:", rolesError);
       } else {
         const roleNames = rolesData?.map((ur) => ur.roles?.name).filter(Boolean) || [];
+        console.log("RoleName is ", roleNames);
         setRoles(roleNames);
       }
     } catch (error) {
