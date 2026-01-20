@@ -80,7 +80,7 @@ function Sidebar() {
       </div>
 
       {/* TO DO */}
-      <div className={getMenuClass("todo")} onClick={() => handleMenuClick("todo")}>
+      <div className={getMenuClass("todo")} onClick={() => handleMenuClick("todo","/todo/tasks")}>
         <div className="menu-left">
           <GIcon name="task" /> To Do
         </div>
@@ -89,10 +89,12 @@ function Sidebar() {
 
       {openMenu === "todo" && (
         <div className="submenu">
-          <p onClick={() => setActiveMenu("todo")}>Tasks</p>
-          <p onClick={() => setActiveMenu("todo")}>Review</p>
+          <p onClick={() => {setActiveMenu("todo"); navigate("/todo/tasks")}}>Tasks</p>
+          <p onClick={() => {setActiveMenu("todo"); navigate("/todo/review")}}>Review</p>
         </div>
       )}
+
+
 
       {/* SALARY */}
       <div
